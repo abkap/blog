@@ -4,9 +4,13 @@
   --bg-color: #1e1f33;
   --font-color: #adafd0;
   --container-color: #262742;
-  --button-color: #e84172;
+  --button-color-readmore: #e84172;
+  --button-color-delete: #f64a4a;
+  --button-color-edit: #4184e8;
+  --button-color-create: #52cf8c;
   --search-input: #262742;
   --font-color2: #8587a4;
+  --button-color-logout: #f64a4a;
 }
 * {
   padding: 0px;
@@ -96,8 +100,11 @@ main {
 .articles-name {
   width: 100%;
   margin: 10px auto;
-  /* background:rgb(241, 86, 109); */
+  /* background: rgb(241, 86, 109); */
+  display: flex;
+  justify-content: space-between;
 }
+
 .articles-name > h2 {
   width: fit-content;
   width: -moz-fit-content;
@@ -124,15 +131,22 @@ main {
   margin-bottom: 10px;
 }
 .article-button {
-  /* background:red; */
   height: 30px;
+  display: flex;
 }
-.readmore {
+.button-operation {
   font-size: 1rem;
   display: flex;
-  width: fit-content;
-  width: -moz-fit-content;
-  background: var(--button-color);
+
+  /* max-width: 100px; */
+  width: 7rem;
+  margin-right: 20px;
+
+  justify-content: center;
+
+  /* width: fit-content;
+  width: -moz-fit-content; */
+  /* background: yellow; */
   border-radius: 5px;
   height: 100%;
   padding: 0px 10px;
@@ -140,4 +154,48 @@ main {
 
   text-decoration: none;
   color: white;
+}
+.edit {
+  background: var(--button-color-edit);
+}
+.readmore {
+  background: var(--button-color-readmore);
+}
+.delete {
+  background: var(--button-color-delete);
+}
+
+.button-create-logout {
+  /* background: lightblue; */
+  /* width: 50%; */
+  display: flex;
+}
+.top-button {
+  height: 30px;
+  margin-top: auto;
+}
+.create {
+  background: var(--button-color-create);
+  margin-right: 0px;
+}
+.logout {
+  background: var(--button-color-logout);
+}
+
+@media (max-width: 500px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 370px) {
+  html {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 330px) {
+  .button-operation {
+    font-size: 0.8rem;
+  }
 }
