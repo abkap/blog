@@ -11,6 +11,14 @@
   --button-color-logout: #f64a4a;
   --border-color: #adafd0;
 }
+::-webkit-scrollbar {
+  background: var(--bg-color);
+  border-radius: 20px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: var(--font-color2);
+}
 * {
   padding: 0px;
   margin: 0px;
@@ -81,6 +89,7 @@ main {
   padding: 10px;
   font-size: 1.3rem;
 }
+
 form {
   /* background: rgb(238, 235, 233); */
   height: 100%;
