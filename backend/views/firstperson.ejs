@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>blogs.abkap.dev</title>
+    <link rel="stylesheet" href="/css/firstperson.css">
+</head>
+<body>
+    <main>
+        <div class="top-bar">
+            <div class="title-search">
+                <h2>blogs.abkap.dev</h2>
+                <input class="search-input" type="text" placeholder="search here">
+            </div>
+            <div class="theme">
+                <img src="../icons/moon.svg" alt="">
+            </div>
+        </div>
+        <div class="articles">
+            <div class="articles-name"><h2>Articles</h2>
+                <div class="button-create-logout">
+                    <a href="/superuser/logout" class="button-operation logout top-button">Logout</a>
+                <a href="#" class="button-operation create top-button">Create</a>
+                </div>
+            </div>
+            <% for(var article of articles){ %>
+             
+            <div class="article-each">
+                <div class="article-title">
+                    <h3><%= article.title %>  </h4>
+                </div>
+                <div class="article-description">
+                    <h4 class="description">Description</h2>
+                    <h4 class="description-content"><%= article.description %> </h2>
+                </div>
+                <div class="article-button">
+                    <a class="readmore button-operation" href="/articles/<%= article.id %>">
+                        Read more
+                    </a>
+                    <a href="#" class="edit button-operation">edit</a>
+                    <a href="#" class="delete button-operation">delete</a>
+                </div>
+            </div>
+            <% }%>
+        </div>
+    </main>
+</body>
+</html>
