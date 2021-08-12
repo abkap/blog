@@ -135,7 +135,7 @@ main {
   background: var(--button-color);
   border-radius: 5px;
   height: 100%;
-  padding: 0px 10px;
+  padding: 0 20px;
   align-items: center;
 
   text-decoration: none;
