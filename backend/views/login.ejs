@@ -15,7 +15,13 @@
       <div class="login">
         <form action="/superuser" method="POST">
           <div class="email">
-            <input name="email" type="email" placeholder="Email" required />
+            <input
+              name="email"
+              type="email"
+              placeholder="Email"
+              required
+              autocomplete="on"
+            />
           </div>
           <div class="password">
             <input
@@ -23,6 +29,7 @@
               type="password"
               placeholder="Password"
               required
+              autocomplete="current-password"
             />
           </div>
           <div class="button-login">

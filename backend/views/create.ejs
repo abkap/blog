@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>blogs.abkap.dev</title>
+    <link rel="stylesheet" href="/css/create.css" />
+  </head>
+  <body>
+    <main>
+      <div class="theme-div"><img src="/icons/moon.svg" alt="" /></div>
+      <div class="container-div">
+        <div class="basic article"><h2>Create new article</h2></div>
+        <form
+          action="/superuser/create?_method=<%= method %>&id=<%= article.id%> "
+          method="POST"
+        >
+          <div class="basic title">
+            <input
+              class="input-class"
+              type="text"
+              required
+              placeholder="title"
+              name="title"
+              value="<%= article.title %>"
+            />
+          </div>
+          <div class="basic description">
+            <input
+              class="input-class"
+              type="text"
+              placeholder="description"
+              name="description"
+              value="<%= article.description %>"
+            />
+          </div>
+          <div class="basic content">
+            <textarea
+              class="area"
+              name="content"
+              id=""
+              cols="30"
+              rows="10"
+              placeholder="content"
+              required
+            >
+<%= article.content %></textarea
+            >
+          </div>
+          <div class="button-div">
+            <a href="/superuser" class="cancel">Cancel</a>
+            <button class="publish" type="submit">publish</button>
+          </div>
+        </form>
+      </div>
+    </main>
+  </body>
+</html>

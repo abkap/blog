@@ -163,6 +163,8 @@ main {
 }
 .delete {
   background: var(--button-color-delete);
+  border: none;
+  cursor: pointer;
 }
 
 .button-create-logout {

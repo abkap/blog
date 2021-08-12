@@ -1,7 +1,7 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
-
+const methodOverride = require("method-override");
 const app = express();
 
 // template engine and middlewares
@@ -10,9 +10,32 @@ app.set("view engine", "ejs");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-
-// constants
+// middleware everything that contains /superuser/something  will be authenticated
+app.use("/superuser/:anything", authenticateUser);
+app.use(methodOverride("_method"));
+// constants and variables
 const SECRET_KEY = "mysercretkey@!";
+var token = "";
+
+// functions
+
+function createJWTToken(email, password) {
+  let token = jwt.sign({ email: email, password: password }, SECRET_KEY, {
+    expiresIn: "15m",
+  });
+  return token;
+}
+function authenticateUser(req, res, next) {
+  // check authorization
+  jwt.verify(req.cookies.token, SECRET_KEY, (err, decode) => {
+    if (err) {
+      console.log("err " + err);
+      return res.redirect("/superuser");
+    } else {
+      return next();
+    }
+  });
+}
 
 // test content
 const users = [
@@ -44,7 +67,7 @@ var articleList = [
 // routes
 
 app.get("/", (req, res) => {
-  res.render("index", { articles: articleList.reverse() });
+  res.render("index", { articles: articleList });
 });
 
 app.get("/articles", (req, res) => {
@@ -63,13 +86,7 @@ app.get("/articles/:id", (req, res) => {
 });
 
 //everything exclusively for superuser
-var token = "";
-function createJWTToken(email, password) {
-  let token = jwt.sign({ email: email, password: password }, SECRET_KEY, {
-    expiresIn: "15s",
-  });
-  return token;
-}
+
 app.get("/superuser", (req, res) => {
   // if logged in then redirect to /superuser/login page
   jwt.verify(req.cookies.token, SECRET_KEY, (err, deocode) => {
@@ -88,7 +105,13 @@ app.post("/superuser", (req, res) => {
     if (user.email == req.body.email && user.password == req.body.password) {
       //   authentication successfull , create  token , cookie and redirect to /superuser/login
       token = createJWTToken(req.body.email, req.body.password);
-      return res.cookie("token", token).redirect("/superuser/login");
+      return res
+        .cookie("token", token, {
+          httpOnly: true,
+          secure: true,
+          sameSite: true,
+        })
+        .redirect("/superuser/login");
     }
   }
   console.log("this wont execute if logged in");
@@ -96,24 +119,80 @@ app.post("/superuser", (req, res) => {
     errorStatement: "invalid email or password",
   });
 });
-// middleware everything that contains /superuser param will be authenticated
-app.use("/superuser/:anything", (req, res, next) => {
-  // check authorization
-  jwt.verify(req.cookies.token, SECRET_KEY, (err, decode) => {
-    if (err) {
-      return res.status(403).send("you dont have access");
-    } else {
-      return next();
-    }
-  });
-});
 
 app.get("/superuser/login", (req, res) => {
-  return res.render("firstperson", { articles: articleList.reverse() });
+  return res.render("firstperson", { articles: articleList });
 });
 
 app.get("/superuser/logout", (req, res) => {
   res.clearCookie("token").redirect("/superuser");
+});
+
+app.get("/superuser/create", (req, res) => {
+  res.render("create", { article: emtptyArticle, method: "POST" });
+});
+
+var idCount = 2; // since 2 items are alredy there
+var emtptyArticle = {
+  id: "none",
+  title: "",
+  description: "",
+  content: "",
+};
+app.get("/superuser/edit/:id", (req, res) => {
+  articleList.forEach((article) => {
+    if (article.id == req.params.id) {
+      // goto create page with pre existing conetnt
+      res.render("create", { article: article, method: "PUT" });
+    }
+  });
+});
+
+app.post("/superuser/create", (req, res) => {
+  console.log(req.body);
+  let title = req.body.title;
+  let description = req.body.description;
+  let content = req.body.content;
+
+  articleList.push({
+    id: ++idCount,
+    title: title,
+    description: description,
+    content: content,
+  });
+
+  res.redirect("/superuser");
+});
+// to update value
+app.put("/superuser/create", (req, res) => {
+  // udpate data
+  let title = req.body.title;
+  let description = req.body.description;
+  let content = req.body.content;
+  let reqId = Number(req.query.id);
+  // console.log("put req : ", req.query);
+  articleList.forEach((article) => {
+    if (article.id == reqId) {
+      // gotcha
+      article.title = title;
+      article.description = description;
+      article.content = content;
+    }
+  });
+
+  res.redirect("/superuser");
+});
+
+app.delete("/superuser/:id/delete", (req, res) => {
+  let id = Number(req.params.id);
+  console.log("delete option for", req.params.id);
+  articleList.forEach((article) => {
+    if (article.id == id) {
+      // remove
+      articleList.splice(articleList.indexOf(article), 1);
+    }
+  });
+  res.redirect("/superuser/login");
 });
 
 // listen
