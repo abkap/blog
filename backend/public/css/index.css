@@ -156,3 +156,10 @@ main {
 .description {
   color: var(--description-color);
 }
+.date {
+  margin-bottom: 10px;
+}
+
+.date-text {
+  color: var(--description-color);
+}

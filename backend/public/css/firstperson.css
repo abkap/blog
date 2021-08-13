@@ -195,6 +195,13 @@ main {
   background: var(--button-color-logout);
 }
 
+.date {
+  margin-bottom: 10px;
+}
+.date-text {
+  color: var(--description-color);
+}
+
 @media (max-width: 500px) {
   html {
     font-size: 14px;

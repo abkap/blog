@@ -36,10 +36,12 @@
                     <h4 class="description">Description</h2>
                     <h4 class="description-content"><%= article.description %> </h2>
                 </div>
+                <div class="date"><h4 class="date-text">Published on : <%= article.date %> </h4></div>
                 <div class="article-button">
                     <a class="readmore button-operation" href="/articles/<%= article.id %>">
                         Read more
                     </a>
+                    
                     <a href="/superuser/edit/<%= article.id %> " class="edit button-operation">edit</a>
                     <form action="/superuser/<%= article.id %>/delete?_method=DELETE" method="POST" onsubmit="return confirm('are you sure ? this will be permenant ')">
                         <button  class="delete button-operation">delete</button>

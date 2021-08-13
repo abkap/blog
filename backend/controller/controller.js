@@ -23,10 +23,11 @@ module.exports = {
         return res.render("thirdperson-read", {
           title: article.title,
           contentHtml: article.contentHtml,
+          date: article.date,
         });
       }
     }
-    return res.sendStatus(404);
+    return res.status(404).render("notfound");
   },
   getSuperuser: (req, res) => {
     // if logged in then redirect to /superuser/login page
@@ -63,7 +64,7 @@ module.exports = {
     return res.render("firstperson", { articles: articleList });
   },
   superuserLogout: (req, res) => {
-    res.clearCookie("token").redirect("/superuser");
+    res.clearCookie("token").redirect("/");
   },
   createArticle: (req, res) => {
     res.render("create", {
@@ -94,17 +95,21 @@ module.exports = {
     let description = req.body.description;
     let content = req.body.content;
     let contentHtml = converter.makeHtml(content);
+    let id = title.replace(/[\!\*\'\(\)\;\:\@\&\=\+\$\#\[\]\,\/\?\%]/g, "~");
+    id = id.split(" ").join("-");
+
     console.log(content);
     articleList.push({
-      id: ++idCount,
+      id: id,
       title: title,
       description: description,
       content: content,
       contentHtml: contentHtml,
+      date: new Date().toJSON().slice(0, 10),
     });
     console.log(articleList);
 
-    res.redirect(`/articles/${idCount}`);
+    res.redirect(`/articles/${id}`);
   },
   updateArticle: (req, res) => {
     // udpate data
@@ -112,7 +117,7 @@ module.exports = {
     let description = req.body.description;
     let content = req.body.content;
     let contentHtml = converter.makeHtml(content);
-    let reqId = Number(req.query.id);
+    let reqId = req.query.id;
     // console.log("put req : ", req.query);
     articleList.forEach((article) => {
       if (article.id == reqId) {
@@ -127,7 +132,7 @@ module.exports = {
     res.redirect(`/articles/${reqId}`);
   },
   deleteArticle: (req, res) => {
-    let id = Number(req.params.id);
+    let id = req.params.id;
     console.log("delete option for", req.params.id);
     articleList.forEach((article) => {
       if (article.id == id) {

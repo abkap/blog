@@ -1,0 +1,18 @@
+:root {
+  --bg-color: #1e1f33;
+  --font-color: #adafd0;
+  --font-color2: #8587a4;
+}
+body {
+  background: var(--bg-color);
+}
+
+h1 {
+  color: var(--font-color2);
+}
+.not-found {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

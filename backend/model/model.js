@@ -17,6 +17,7 @@ var articleList = [
     content: "there are many uses of this keyword and it varies on languages",
     contentHtml:
       "there are many uses of this keyword and it varies on languages",
+    date: "2021-08-13",
   },
   {
     id: 2,
@@ -24,6 +25,7 @@ var articleList = [
     description: "from begining to end on deploying a server on gcp",
     content: "first signup for gcp it is completely free for 3 months",
     contentHtml: "first signup for gcp it is completely free for 3 months",
+    date: "2021-07-14",
   },
 ];
 

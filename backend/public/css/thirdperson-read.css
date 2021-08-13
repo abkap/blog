@@ -80,6 +80,7 @@ p {
 /* for code tag */
 code {
   /* padding: 10px; */
+  margin: 10px 0px;
   width: 100%;
   display: block;
   padding: 10px;
@@ -87,7 +88,17 @@ code {
   border-radius: 5px;
   overflow: auto;
 }
+.date {
+  margin-bottom: 10px;
+}
+.date-text {
+  color: var(--font-color2);
+}
+.hr {
+  border-color: var(--font-color2);
 
+  margin-bottom: 10px;
+}
 /* new */
 @media (max-width: 500px) {
   .container {
