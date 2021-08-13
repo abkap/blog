@@ -11,12 +11,23 @@
   --search-input: #262742;
   --font-color2: #8587a4;
   --button-color-logout: #f64a4a;
+  --description-color: #5c5d80;
 }
 * {
   padding: 0px;
   margin: 0px;
   box-sizing: border-box;
 }
+
+::-webkit-scrollbar {
+  background: var(--bg-color);
+  border-radius: 20px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: var(--font-color2);
+}
+
 html {
   font-size: 16px;
   font-family: "Georama", sans-serif, serif;
@@ -200,4 +211,8 @@ main {
   .button-operation {
     font-size: 0.8rem;
   }
+}
+
+.description {
+  color: var(--description-color);
 }

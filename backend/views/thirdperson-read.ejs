@@ -6,20 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>blogs.abkap.dev</title>
     <link rel="stylesheet" href="/css/thirdperson-read.css" />
+    <script src="/js/client.js" type="module" defer ></script>
   </head>
   <body>
     <main>
       <div class="top-bar">
         <div class="theme">
-          <img src="../icons/moon.svg" alt="img" />
+          <img id="theme-img" src="../icons/moon.svg" alt="img" />
         </div>
       </div>
       <div class="container">
         <div class="title">
-          <h3><%= title %></h3>
+          <h1><%= title %></h3>
         </div>
         <div class="content">
-          <p><%- content %></p>
+          <p><%- contentHtml %></p>
         </div>
       </div>
     </main>

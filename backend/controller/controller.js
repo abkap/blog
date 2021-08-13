@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const { createJWTToken } = require("./basic_functions.js");
+const showdown = require("showdown");
 var {
   articleList,
   users,
@@ -9,22 +10,19 @@ var {
   emtptyArticle,
 } = require("../model/model.js");
 
+var converter = new showdown.Converter();
+
 module.exports = {
   renderRoute: (req, res) => {
     res.render("index", { articles: articleList });
   },
-  renderArticles: (req, res) => {
-    res.render("thirdperson-read", {
-      title: "something",
-      content: "something",
-    });
-  },
+
   renderArticlesWithId: (req, res) => {
     for (var article of articleList) {
       if (article.id == req.params.id) {
         return res.render("thirdperson-read", {
           title: article.title,
-          content: article.content,
+          contentHtml: article.contentHtml,
         });
       }
     }
@@ -50,13 +48,13 @@ module.exports = {
         return res
           .cookie("token", token, {
             httpOnly: true,
-            secure: true,
+            // secure: true,
             sameSite: true,
           })
           .redirect("/superuser/login");
       }
     }
-    console.log("this wont execute if logged in");
+
     return res.render("login", {
       errorStatement: "invalid email or password",
     });
@@ -68,13 +66,25 @@ module.exports = {
     res.clearCookie("token").redirect("/superuser");
   },
   createArticle: (req, res) => {
-    res.render("create", { article: emtptyArticle, method: "POST" });
+    res.render("create", {
+      id: "none",
+      title: "",
+      description: "",
+      contentHtml: "",
+      method: "POST",
+    });
   },
   editArticle: (req, res) => {
     articleList.forEach((article) => {
       if (article.id == req.params.id) {
         // goto create page with pre existing conetnt
-        res.render("create", { article: article, method: "PUT" });
+        res.render("create", {
+          id: article.id,
+          title: article.title,
+          description: article.description,
+          contentHtml: article.content,
+          method: "PUT",
+        });
       }
     });
   },
@@ -83,21 +93,25 @@ module.exports = {
     let title = req.body.title;
     let description = req.body.description;
     let content = req.body.content;
-
+    let contentHtml = converter.makeHtml(content);
+    console.log(content);
     articleList.push({
       id: ++idCount,
       title: title,
       description: description,
       content: content,
+      contentHtml: contentHtml,
     });
+    console.log(articleList);
 
-    res.redirect("/superuser");
+    res.redirect(`/articles/${idCount}`);
   },
   updateArticle: (req, res) => {
     // udpate data
     let title = req.body.title;
     let description = req.body.description;
     let content = req.body.content;
+    let contentHtml = converter.makeHtml(content);
     let reqId = Number(req.query.id);
     // console.log("put req : ", req.query);
     articleList.forEach((article) => {
@@ -106,10 +120,11 @@ module.exports = {
         article.title = title;
         article.description = description;
         article.content = content;
+        article.contentHtml = contentHtml;
       }
     });
-
-    res.redirect("/superuser");
+    console.log(articleList);
+    res.redirect(`/articles/${reqId}`);
   },
   deleteArticle: (req, res) => {
     let id = Number(req.params.id);
@@ -121,5 +136,8 @@ module.exports = {
       }
     });
     res.redirect("/superuser/login");
+  },
+  redirectToEdit: (req, res) => {
+    res.redirect(`/superuser/edit/${req.params.id}`);
   },
 };

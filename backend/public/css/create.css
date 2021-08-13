@@ -12,6 +12,7 @@
   --font-color2: #8587a4;
   --button-color-logout: #f64a4a;
   --border-color: #adafd0;
+  --placeholder-color: #9494a0;
 }
 ::-webkit-scrollbar {
   background: var(--bg-color);
@@ -45,6 +46,7 @@ main {
   /* background: lightsalmon; */
   display: flex;
   justify-content: flex-end;
+  padding: 5px 10px;
 }
 .theme-div > img {
   width: 50px;
@@ -102,7 +104,7 @@ form {
 }
 .input-class::placeholder,
 .area::placeholder {
-  color: var(--font-color);
+  color: var(--placeholder-color);
 }
 .area {
   height: 100%;

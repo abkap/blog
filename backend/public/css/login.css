@@ -20,6 +20,15 @@
   font-family: "Georama", sans-serif, serif;
 }
 
+::-webkit-scrollbar {
+  background: var(--bg-color);
+  border-radius: 20px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: var(--font-color2);
+}
+
 body {
   background: var(--bg-color);
 }
@@ -34,6 +43,7 @@ main {
 }
 .theme {
   /* background: lightpink; */
+  padding: 0px 10px;
 }
 .theme > img {
   display: block;
@@ -75,4 +85,12 @@ button {
 }
 .invalid {
   color: red;
+}
+
+@media (max-width: 500px) {
+  .login {
+    width: 100%;
+    background: transparent;
+    padding: 10px;
+  }
 }

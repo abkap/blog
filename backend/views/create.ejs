@@ -6,14 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>blogs.abkap.dev</title>
     <link rel="stylesheet" href="/css/create.css" />
+    <script src="/js/client.js" type="module" defer></script>
   </head>
   <body>
     <main>
-      <div class="theme-div"><img src="/icons/moon.svg" alt="" /></div>
+      <div class="theme-div">
+        <img id="theme-img" src="/icons/moon.svg" alt="" />
+      </div>
       <div class="container-div">
         <div class="basic article"><h2>Create new article</h2></div>
         <form
-          action="/superuser/create?_method=<%= method %>&id=<%= article.id%> "
+          action="/superuser/create?_method=<%= method %>&id=<%= id %> "
           method="POST"
         >
           <div class="basic title">
@@ -24,7 +27,7 @@
               placeholder="title"
               name="title"
               autocomplete="off"
-              value="<%= article.title %>"
+              value="<%= title %>"
             />
           </div>
           <div class="basic description">
@@ -34,7 +37,7 @@
               placeholder="description"
               name="description"
               autocomplete="off"
-              value="<%= article.description %>"
+              value="<%= description %>"
             />
           </div>
           <div class="basic content">
@@ -47,7 +50,7 @@
               placeholder="content"
               required
             >
-<%= article.content %></textarea
+<%= contentHtml %></textarea
             >
           </div>
           <div class="button-div">

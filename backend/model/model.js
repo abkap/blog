@@ -15,12 +15,15 @@ var articleList = [
     title: "what is meant by this keyword ? ",
     description: "this keyword refers to current class",
     content: "there are many uses of this keyword and it varies on languages",
+    contentHtml:
+      "there are many uses of this keyword and it varies on languages",
   },
   {
     id: 2,
     title: "deploying a server on gcp",
     description: "from begining to end on deploying a server on gcp",
     content: "first signup for gcp it is completely free for 3 months",
+    contentHtml: "first signup for gcp it is completely free for 3 months",
   },
 ];
 
@@ -32,6 +35,7 @@ var emtptyArticle = {
   title: "",
   description: "",
   content: "",
+  contentHtml: "",
 };
 
 module.exports = {
