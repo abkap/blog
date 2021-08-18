@@ -51,7 +51,7 @@ p {
 .theme {
   /* background:greenyellow; */
   width: fit-content;
-  width: moz-fit-content;
+  width: -moz-fit-content;
   margin-left: auto;
 }
 .theme > img {
@@ -62,7 +62,7 @@ p {
 .title {
   /* background:lightgoldenrodyellow; */
   width: fit-content;
-  width: moz-fit-content;
+  width: -moz-fit-content;
   margin: auto;
   margin-bottom: 20px;
 }

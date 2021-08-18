@@ -6,13 +6,13 @@ var value;
 
 function searchItem() {
   value = input.value.toLowerCase();
-  console.log(value);
+
   for (let i = 0; i < articleTitle.length; i++) {
     // same length for description
 
     if (
-      articleTitle[i].textContent.indexOf(value) > -1 ||
-      descriptionContent[i].textContent.indexOf(value) > -1
+      articleTitle[i].textContent.toLowerCase().indexOf(value) > -1 ||
+      descriptionContent[i].textContent.toLowerCase().indexOf(value) > -1
     ) {
       // found the item
       articleEach[i].style.display = "";

@@ -16,7 +16,6 @@ router.use("/superuser/:anything", basicFunctions.authenticateUser);
 // routes
 
 router.get("/", controller.renderRoute);
-
 router.get("/articles/:id", controller.renderArticlesWithId);
 router.get("/articles/:id/edit", controller.redirectToEdit);
 

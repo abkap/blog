@@ -1,14 +1,7 @@
 const jwt = require("jsonwebtoken");
 const { createJWTToken } = require("./basic_functions.js");
 const showdown = require("showdown");
-var {
-  articleList,
-  users,
-  token,
-  SECRET_KEY,
-  idCount,
-  emtptyArticle,
-} = require("../model/model.js");
+var { articleList, users, token, SECRET_KEY } = require("../model/model.js");
 
 var converter = new showdown.Converter();
 
@@ -45,7 +38,9 @@ module.exports = {
     for (user of users) {
       if (user.email == req.body.email && user.password == req.body.password) {
         //   authentication successfull , create  token , cookie and redirect to /superuser/login
-        token = createJWTToken(req.body.email, req.body.password);
+        var user = req.body.email.split("@")[0];
+        var permission = "superuser";
+        token = createJWTToken(user, permission);
         return res
           .cookie("token", token, {
             httpOnly: true,

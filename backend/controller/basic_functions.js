@@ -1,8 +1,8 @@
 const jwt = require("jsonwebtoken");
 const { SECRET_KEY } = require("../model/model.js");
 module.exports = {
-  createJWTToken: (email, password) => {
-    let token = jwt.sign({ email: email, password: password }, SECRET_KEY, {
+  createJWTToken: (user, permission) => {
+    let token = jwt.sign({ user: user, permission: permission }, SECRET_KEY, {
       expiresIn: "15m",
     });
     return token;
