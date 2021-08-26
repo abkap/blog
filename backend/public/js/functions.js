@@ -1,4 +1,5 @@
 const root = document.querySelector(":root");
+
 const img = document.querySelector("#theme-img");
 
 // used inside this func only
@@ -17,7 +18,7 @@ function checkCookie(name) {
 
 function setDarkThemeProperty() {
   // set properties for dark theme
-  img.src = "/icons/moon.svg";
+  if (img) img.src = "/icons/moon.svg";
   root.style.setProperty("--bg-color", "#1e1f33");
   root.style.setProperty("--font-color", "#adafd0");
   root.style.setProperty("--container-color", "#262742");
@@ -37,7 +38,7 @@ function setDarkThemeProperty() {
 }
 
 function setLightThemeProperty() {
-  img.src = "/icons/sun.svg";
+  if (img) img.src = "/icons/sun.svg";
   root.style.setProperty("--bg-color", "#EFEFEF");
   root.style.setProperty("--font-color", "#676874");
   root.style.setProperty("--container-color", "#E8E8E8");
