@@ -86,6 +86,7 @@ function themeOnLoad() {
     // doesnt exists
     //   initial is always dark
     setCookie("theme", "dark");
+    setDarkThemeProperty();
   }
 }
 export { themeOnLoad, adjustTheme };

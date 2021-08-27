@@ -167,7 +167,7 @@ module.exports = {
 
       if (!alredyExists) {
         // add error code
-        new Posts({
+        await new Posts({
           id: id,
           title: title,
           description: description,
