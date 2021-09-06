@@ -1,8 +1,3 @@
-:root {
-  --bg-color: transparent; /* #1e1f33 */
-  --font-color: transparent; /* #adafd0 */
-  --font-color2: transparent; /* #8587a4 */
-}
 body {
   background: var(--bg-color);
 }

@@ -1,14 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Georama:wght@200;300&display=swap");
 
-:root {
-  --bg-color: transparent; /*#1e1f33 */
-  --font-color: transparent; /*#adafd0 */
-  --container-color: transparent; /*#262742 */
-  --button-color-readmore: transparent; /*#e84172 */
-  --search-input: transparent; /*#262742 */
-  --font-color2: transparent; /*#8587a4 */
-  --description-color: transparent; /*#5c5d80 */
-}
 * {
   padding: 0px;
   margin: 0px;
@@ -98,6 +89,7 @@ main {
 .theme > img {
   width: 40px;
   height: 40px;
+  display: none;
 }
 
 .articles {
@@ -162,4 +154,7 @@ main {
 
 .date-text {
   color: var(--description-color);
+}
+.hr {
+  border-color: var(--font-color2);
 }

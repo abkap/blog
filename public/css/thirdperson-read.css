@@ -1,13 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Georama:wght@200;300&display=swap");
 
-:root {
-  --bg-color: transparent; /* #1e1f33 */
-  --font-color: transparent; /* #adafd0 */
-  --container-color: transparent; /* #262742 */
-  --font-color2: transparent; /* #8587a4 */
-  --code-bg: transparent; /* #313250 */
-  --anchor-color: transparent; /* #adafd0 */
-}
 * {
   padding: 0px;
   margin: 0px;
@@ -67,6 +59,7 @@ p {
 .theme > img {
   width: 50px;
   height: 50px;
+  display: none;
 }
 
 .title {
