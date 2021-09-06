@@ -1,0 +1,147 @@
+@import url("https://fonts.googleapis.com/css2?family=Georama:wght@200;300&display=swap");
+
+:root {
+  --bg-color: #1e1f33;
+  --font-color: #adafd0;
+  --container-color: #262742;
+  --font-color2: #8587a4;
+  --code-bg: #313250;
+  --anchor-color: #adafd0;
+}
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+::-webkit-scrollbar {
+  background: var(--bg-color);
+  border-radius: 20px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: var(--font-color2);
+}
+html {
+  font-size: 16px;
+  color: var(--font-color2);
+  font-family: "Georama", sans-serif, serif;
+}
+body {
+  background: var(--bg-color);
+}
+main {
+  /* background:rgb(222, 231, 243); */
+  margin: auto;
+  max-width: 1200px;
+  padding: 10px 0px;
+}
+a {
+  color: var(--anchor-color);
+  /* text-decoration: none; */
+}
+p {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
+.top-bar {
+  /* background: lightcoral; */
+  width: 90%;
+  margin: auto;
+}
+.theme {
+  /* background:greenyellow; */
+  width: fit-content;
+  width: -moz-fit-content;
+  margin-left: auto;
+}
+.theme > img {
+  width: 50px;
+  height: 50px;
+}
+
+.title {
+  /* background:lightgoldenrodyellow; */
+  width: fit-content;
+  width: -moz-fit-content;
+  margin: auto;
+  margin-bottom: 20px;
+}
+.container {
+  background: var(--container-color);
+  width: 80%;
+  margin: 20px auto;
+  border-radius: 10px;
+  padding: 20px;
+}
+.content {
+  /* background:lightgreen; */
+}
+
+/* for code tag */
+code {
+  /* padding: 10px; */
+  margin: 10px 0px;
+  width: 100%;
+  display: block;
+  padding: 10px;
+  background: var(--code-bg);
+  border-radius: 5px;
+  overflow: auto;
+}
+
+.hr {
+  border-color: var(--font-color2);
+
+  margin-bottom: 10px;
+}
+
+/* for about section */
+
+.info {
+  height: 20px;
+  /* background: lightcoral; */
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.condetions {
+  color: var(--font-color2);
+  font-size: 1rem;
+}
+
+.info a {
+  text-decoration: none;
+}
+
+@media (max-width: 410px) {
+  .condetions {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 250px) {
+  .condetions {
+    font-size: 6px;
+  }
+}
+
+/* end about section */
+
+@media (max-width: 810px) {
+  html {
+    font-size: 15px;
+  }
+}
+/* new */
+@media (max-width: 500px) {
+  .container {
+    width: 100%;
+    background: transparent;
+    padding: 13px;
+  }
+  html {
+    font-size: 14px;
+  }
+}

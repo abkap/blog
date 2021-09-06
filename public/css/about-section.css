@@ -1,0 +1,33 @@
+/* for about section */
+
+.info {
+  height: 20px;
+  /* background: lightcoral; */
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.condetions {
+  color: var(--font-color2);
+  font-size: 1rem;
+}
+
+.info a {
+  text-decoration: none;
+}
+
+@media (max-width: 410px) {
+  .condetions {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 250px) {
+  .condetions {
+    font-size: 6px;
+  }
+}
+
+/* end about section */

@@ -5,7 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>blogs.abkap.dev</title>
-    <link rel="stylesheet" href="/css/firstperson.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/about-section.css">
     <script src="/js/client.js" type="module" defer ></script>
     <script src="/js/search.js" defer></script>
 </head>
@@ -17,39 +18,35 @@
                 <input id="search-input-id" class="search-input" type="text" placeholder="search here" onkeyup="searchItem()">
             </div>
             <div class="theme">
-                <img id="theme-img" src="../icons/moon.svg" alt="">
+                <img id="theme-img" src="/icons/moon.svg" alt="">
             </div>
         </div>
         <div class="articles">
-            <div class="articles-name"><h2>Articles</h2>
-                <div class="button-create-logout">
-                    <a href="/superuser/logout" class="button-operation logout top-button">Logout</a>
-                <a href="/superuser/create" class="button-operation create top-button">Create</a>
-                </div>
-            </div>
-            <% for(var article of articles){ %>
-             
+            <div class="articles-name"><h2>Articles</h2></div>
+            <% for(var article of articles){ %>  
             <div class="article-each">
                 <div class="article-title">
-                    <h3><%= article.title %>  </h4>
+                    <h3><%= article.title %> </h4>
                 </div>
                 <div class="article-description">
                     <h4 class="description">Description</h2>
-                    <h4 class="description-content"><%= article.description %> </h2>
+                    <h4 class="description-content"> <%= article.description %>  </h2>
                 </div>
                 <div class="date"><h4 class="date-text">Published on : <%= article.date %> </h4></div>
                 <div class="article-button">
-                    <a class="readmore button-operation" href="/articles/<%= article.id %>">
+                    <a class="readmore" href="/articles/<%= article.id %>">
                         Read more
                     </a>
-                    
-                    <a href="/superuser/edit/<%= article.id %> " class="edit button-operation">edit</a>
-                    <form action="/superuser/<%= article.id %>/delete?_method=DELETE" method="POST" onsubmit="return confirm('are you sure ? this will be permenant ')">
-                        <button  class="delete button-operation">delete</button>
-                    </form>
                 </div>
             </div>
-            <% }%>
+            <% } %> 
+            <hr class="hr">
+            <div class="info">
+            <a href="/privacy-policy"><p class="condetions">Privacy and Policy</p></a>
+            <a href="/about"><p class="condetions">About</p></a>
+            <a href="/terms-and-condetions"><p class="condetions">Terms and condetions</p></a> 
+            </div>
+            
         </div>
     </main>
 </body>

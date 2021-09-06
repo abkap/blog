@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>blogs.abkap.dev</title>
+    <link rel="stylesheet" href="/css/about-section.css">
+    <link rel="stylesheet" href="/css/thirdperson-read.css" />
+    <script src="/js/client.js" type="module" defer ></script>
+  </head>
+  <body>
+    <main>
+      <div class="top-bar">
+        <div class="theme">
+          <img id="theme-img" src="../icons/moon.svg" alt="img" />
+        </div>
+      </div>
+      <div class="container">
+        <div class="title">
+          <h1 class="heading-title"><%= title %></h3>
+        </div>
+        <div class="date"><h4 class="date-text">Published on : <%= date %> </h4></div>
+        <hr class="hr">
+        <div class="content">
+          <%- contentHtml %>
+        </div>
+        <hr class="hr">
+        <div class="info">
+          <a href="/privacy-policy"><p class="condetions">Privacy and Policy</p></a>
+          <a href="/about"><p class="condetions">About</p></a>
+          <a href="/terms-and-condetions"><p class="condetions">Terms and condetions</p></a> 
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

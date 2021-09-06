@@ -18,6 +18,21 @@ module.exports = {
       res.render("notfound");
     }
   },
+  sendPrivacyPolicy: (req, res) => {
+    res.sendFile("privacy_policy.html", {
+      root: __dirname + "/../html",
+    });
+  },
+  sendTermsAndCondetions: (req, res) => {
+    res.sendFile("terms_and_condetions.html", {
+      root: __dirname + "/../html",
+    });
+  },
+  sendAbout: (req, res) => {
+    res.sendFile("about.html", {
+      root: __dirname + "/../html",
+    });
+  },
 
   renderArticlesWithId: async (req, res) => {
     try {

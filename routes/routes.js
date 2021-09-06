@@ -3,6 +3,7 @@ const cookieParser = require("cookie-parser");
 const methodOverride = require("method-override");
 const controller = require("../controller/controller.js");
 const router = express.Router();
+const path = require("path");
 const basicFunctions = require("../controller/basic_functions.js");
 
 router.use(express.static("public"));
@@ -16,6 +17,9 @@ router.use("/superuser/:anything", basicFunctions.authenticateUser);
 // routes
 
 router.get("/", controller.renderRoute);
+router.get("/privacy-policy", controller.sendPrivacyPolicy);
+router.get("/terms-and-condetions", controller.sendTermsAndCondetions);
+router.get("/about", controller.sendAbout);
 router.get("/articles/:id", controller.renderArticlesWithId);
 router.get("/articles/:id/edit", controller.redirectToEdit);
 
