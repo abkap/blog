@@ -4,7 +4,10 @@ const img = document.querySelector("#theme-img");
 
 // used inside this func only
 function setCookie(name, value) {
-  document.cookie = `${name}=${value};path=/`;
+  let date = new Date();
+  date = new Date(date.getTime() + 1000 * 60 * 60 * 24 * 365); // days
+
+  document.cookie = `${name}=${value};path=/;expires=${date.toGMTString()};`;
 }
 
 function checkCookie(name) {
