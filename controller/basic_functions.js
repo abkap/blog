@@ -3,7 +3,7 @@ const { SECRET_KEY } = require("../model/model.js");
 module.exports = {
   createJWTToken: (user, permission) => {
     let token = jwt.sign({ user: user, permission: permission }, SECRET_KEY, {
-      expiresIn: "15m",
+      expiresIn: "24h",
     });
     return token;
   },
