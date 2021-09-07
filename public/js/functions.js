@@ -51,7 +51,7 @@ function setLightThemeProperty() {
   root.style.setProperty("--font-color2", "#5e5e70");
   root.style.setProperty("--button-color-logout", "#f64a4a");
   root.style.setProperty("--border-color", "#676874");
-  root.style.setProperty("--code-bg", "#EBEBEB");
+  root.style.setProperty("--code-bg", "#d7d7d7");
   root.style.setProperty("--anchor-color", " #7274AF");
   //  new
   root.style.setProperty("--placeholder-color", " #9494a0");
@@ -84,9 +84,9 @@ function themeOnLoad() {
     setLightThemeProperty();
   } else {
     // doesnt exists
-    //   initial is always dark
-    setCookie("theme", "dark");
-    setDarkThemeProperty();
+    //   initial is always light
+    setCookie("theme", "light");
+    setLightThemeProperty();
   }
 }
 export { themeOnLoad, adjustTheme };

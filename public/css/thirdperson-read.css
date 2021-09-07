@@ -17,6 +17,7 @@ html {
   font-size: 16px;
   color: var(--font-color2);
   font-family: "Georama", sans-serif, serif;
+  background-color: var(--bg-color);
 }
 body {
   background: var(--bg-color);

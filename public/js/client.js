@@ -3,17 +3,17 @@ import { themeOnLoad, adjustTheme } from "/js/functions.js";
 // displaying icon
 
 document.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll("img").forEach((item) => {
-    console.log("item is : " + item);
+  document.querySelectorAll("img").forEach((img) => {
+    console.log("img is : " + img);
 
-    item.style.display = "block";
+    img.style.display = "block";
   });
 });
 
-const img = document.querySelector("#theme-img");
+const image = document.querySelector("#theme-img");
 themeOnLoad();
 
-if (img)
-  img.addEventListener("click", () => {
+if (image)
+  image.addEventListener("click", () => {
     adjustTheme();
   });

@@ -18,6 +18,7 @@
 html {
   font-size: 16px;
   font-family: "Georama", sans-serif, serif;
+  background-color: var(--bg-color);
 }
 h2,
 h3,

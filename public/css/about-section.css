@@ -1,4 +1,7 @@
 /* for about section */
+html {
+  background-color: var(--bg-color);
+}
 
 .info {
   height: 20px;

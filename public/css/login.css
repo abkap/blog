@@ -15,6 +15,9 @@
   border-radius: 10px;
   background: var(--font-color2);
 }
+html {
+  background-color: var(--bg-color);
+}
 
 body {
   background: var(--bg-color);
