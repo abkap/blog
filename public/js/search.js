@@ -16,6 +16,7 @@ h3.classList.add("article-title");
 h3.textContent = "No Similar Posts Found !";
 div.appendChild(h3);
 articles.appendChild(div);
+div.style.display = "none";
 
 function searchItem() {
   value = input.value.toLowerCase();
