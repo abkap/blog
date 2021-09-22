@@ -25,10 +25,12 @@
         </div>
         <div class="articles">
             <div class="articles-name"><h2>Articles</h2>
+                <% if(isLoggedIn){ %> 
                 <div class="button-create-logout">
                     <a href="/superuser/logout" class="button-operation logout top-button">Logout</a>
-                <a href="/superuser/create" class="button-operation create top-button">Create</a>
+                    <a href="/superuser/create" class="button-operation create top-button">Create</a>
                 </div>
+                <% } %> 
             </div>
             <% for(var article of articles){ %>
              
@@ -46,10 +48,12 @@
                         Read more
                     </a>
                     
+                    <% if(isLoggedIn){ %> 
                     <a href="/superuser/edit/<%= article.id %> " class="edit button-operation">edit</a>
-                    <form action="/superuser/<%= article.id %>/delete?_method=DELETE" method="POST" onsubmit="return confirm('are you sure ? this will be permenant ')">
+                    <form action="/superuser/<%= article.id %>/delete?_method=DELETE" method="POST" onsubmit="return confirm('Are you sure ? this will be permenant !!')">
                         <button  class="delete button-operation">delete</button>
                     </form>
+                    <% } %> 
                 </div>
             </div>
             <% }%>

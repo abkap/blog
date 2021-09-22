@@ -11,7 +11,10 @@ module.exports = {
     // add error code
     try {
       Posts.find((err, articleList) => {
-        res.render("index", { articles: articleList.reverse() });
+        res.render("firstperson", {
+          articles: articleList.reverse(),
+          isLoggedIn: false,
+        });
       });
     } catch (e) {
       console.log(e);
@@ -112,7 +115,10 @@ module.exports = {
     // add error code
     try {
       Posts.find((err, articleList) => {
-        res.render("firstperson", { articles: articleList.reverse() });
+        res.render("firstperson", {
+          articles: articleList.reverse(),
+          isLoggedIn: true,
+        });
       });
     } catch (err) {
       console.log(err);
