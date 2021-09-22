@@ -193,6 +193,13 @@ main {
 .hr {
   border-color: var(--font-color2);
 }
+
+.emtpy-articles {
+  min-height: 200px;
+  height: 50vh;
+  display: flex;
+  align-items: center;
+}
 @media (max-width: 500px) {
   html {
     font-size: 14px;
