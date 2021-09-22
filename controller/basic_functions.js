@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
 const { SECRET_KEY } = require("../model/model.js");
 module.exports = {
   createJWTToken: (user, permission) => {
@@ -16,6 +17,13 @@ module.exports = {
       } else {
         return next();
       }
+    });
+  },
+
+  checkUserPassword: async (inputPassword, dbPassword) => {
+    let result = await bcrypt.compare(inputPassword, dbPassword);
+    return new Promise((resolve, reject) => {
+      resolve(result);
     });
   },
 };

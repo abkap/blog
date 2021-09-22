@@ -17,12 +17,13 @@
   },
   "homepage": "https://github.com/abkap/blog#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.5",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "method-override": "^3.0.0",
-    "mongoose": "^5.13.7",
+    "mongoose": "^6.0.7",
     "serve-favicon": "^2.5.0",
     "showdown": "^1.9.1"
   }

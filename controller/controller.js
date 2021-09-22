@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const { createJWTToken } = require("./basic_functions.js");
+const { createJWTToken, checkUserPassword } = require("./basic_functions.js");
 const showdown = require("showdown");
 
 var { Users, SECRET_KEY, Posts } = require("../model/model.js");
@@ -7,10 +7,10 @@ var { Users, SECRET_KEY, Posts } = require("../model/model.js");
 var converter = new showdown.Converter();
 
 module.exports = {
-  renderRoute: async (req, res) => {
+  renderRoute: (req, res) => {
     // add error code
     try {
-      await Posts.find((err, articleList) => {
+      Posts.find((err, articleList) => {
         res.render("index", { articles: articleList.reverse() });
       });
     } catch (e) {
@@ -34,9 +34,9 @@ module.exports = {
     });
   },
 
-  renderArticlesWithId: async (req, res) => {
+  renderArticlesWithId: (req, res) => {
     try {
-      await Posts.find((err, articleList) => {
+      Posts.find((err, articleList) => {
         // add error code
         for (var article of articleList) {
           if (article.id == req.params.id) {
@@ -68,28 +68,37 @@ module.exports = {
       res.render("notfound");
     }
   },
-  postSuperuser: async (req, res) => {
+  postSuperuser: (req, res) => {
     try {
-      await Users.find((err, users) => {
+      Users.find(async (err, users) => {
         // add error code
         for (user of users) {
           if (
-            user.email == req.body.email &&
-            user.password == req.body.password
+            user.email == req.body.email
+            // user.password == req.body.password
           ) {
-            //   authentication successfull , create  token , cookie and redirect to /superuser/login
-            var user = req.body.email.split("@")[0];
-            var permission = "superuser";
-            token = createJWTToken(user, permission);
-            return res
-              .cookie("token", token, {
-                httpOnly: true,
-                // secure: true,
-                sameSite: true,
-              })
-              .redirect("/superuser/login");
+            let hasPermissionToLogin = await checkUserPassword(
+              req.body.password,
+              user.password
+            );
+            console.log(hasPermissionToLogin);
+            if (hasPermissionToLogin) {
+              //   authentication successfull , create  token , cookie and redirect to /superuser/login
+              var user = req.body.email.split("@")[0];
+              var permission = "superuser";
+              token = createJWTToken(user, permission);
+
+              return res
+                .cookie("token", token, {
+                  httpOnly: true,
+                  // secure: true,
+                  sameSite: true,
+                })
+                .redirect("/superuser/login");
+            }
           }
         }
+
         return res.render("login", {
           errorStatement: "invalid email or password",
         });
@@ -99,10 +108,10 @@ module.exports = {
       res.render("notfound");
     }
   },
-  superuserLogin: async (req, res) => {
+  superuserLogin: (req, res) => {
     // add error code
     try {
-      await Posts.find((err, articleList) => {
+      Posts.find((err, articleList) => {
         res.render("firstperson", { articles: articleList.reverse() });
       });
     } catch (err) {
@@ -132,10 +141,10 @@ module.exports = {
       res.render("notfound");
     }
   },
-  editArticle: async (req, res) => {
+  editArticle: (req, res) => {
     // add error code
     try {
-      await Posts.find((err, articleList) => {
+      Posts.find((err, articleList) => {
         articleList.forEach((article) => {
           if (article.id == req.params.id) {
             // goto create page with pre existing conetnt
@@ -154,7 +163,7 @@ module.exports = {
       res.render("notfound");
     }
   },
-  postArticle: async (req, res) => {
+  postArticle: (req, res) => {
     try {
       let title = req.body.title;
       let description = req.body.description;
@@ -169,30 +178,30 @@ module.exports = {
       let id = title.replace(/[\!\*\'\(\)\;\:\@\&\=\+\$\#\[\]\,\/\?\%]/g, "~");
       var alredyExists = false;
       id = id.split(" ").join("-");
-      await Posts.find((err, articleList) => {
+      Posts.find(async (err, articleList) => {
         articleList.forEach((article) => {
           if (article.id == id) {
+            alredyExists = true;
             res.send(
               "<h1>Id (title) alredy exists, please choose another title</h1>"
             );
-            alredyExists = true;
           }
         });
+        // run existing code below
+        if (!alredyExists) {
+          // add error code
+          await new Posts({
+            id: id,
+            title: title,
+            description: description,
+            date: date,
+            content: content,
+            contentHtml: contentHtml,
+          }).save();
+
+          return res.redirect(`/articles/${id}`);
+        }
       });
-
-      if (!alredyExists) {
-        // add error code
-        await new Posts({
-          id: id,
-          title: title,
-          description: description,
-          date: date,
-          content: content,
-          contentHtml: contentHtml,
-        }).save();
-
-        return res.redirect(`/articles/${id}`);
-      }
     } catch (err) {
       console.log(err);
       res.render("notfound");
