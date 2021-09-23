@@ -52,5 +52,4 @@ function searchItem() {
     div.style.display = "";
     console.log("article is empty");
   }
-  // console.log("executed serach");
 }
