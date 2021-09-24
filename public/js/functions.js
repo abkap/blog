@@ -1,6 +1,7 @@
 const root = document.querySelector(":root");
 
-const img = document.querySelector("#theme-img");
+const slider = document.querySelector(".slider");
+const sliderRound = document.querySelector(".slider-round");
 
 // used inside this func only
 function setCookie(name, value) {
@@ -21,7 +22,10 @@ function checkCookie(name) {
 
 function setDarkThemeProperty() {
   // set properties for dark theme
-  if (img) img.src = "/icons/moon.svg";
+
+  slider.classList.add("slider-active");
+  sliderRound.classList.add("slider-round-active");
+
   root.style.setProperty("--bg-color", "#1e1f33");
   root.style.setProperty("--font-color", "#adafd0");
   root.style.setProperty("--container-color", "#262742");
@@ -41,7 +45,8 @@ function setDarkThemeProperty() {
 }
 
 function setLightThemeProperty() {
-  if (img) img.src = "/icons/sun.svg";
+  slider.classList.remove("slider-active");
+  sliderRound.classList.remove("slider-round-active");
   root.style.setProperty("--bg-color", "#EFEFEF");
   root.style.setProperty("--font-color", "#676874");
   root.style.setProperty("--container-color", "#E8E8E8");

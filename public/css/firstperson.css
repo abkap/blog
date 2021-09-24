@@ -84,13 +84,8 @@ main {
 .theme {
   grid-column: 3/4;
   width: fit-content;
-  margin: 0px auto;
+  margin: 5px auto;
   /* background: rgb(59, 201, 141); */
-}
-.theme > img {
-  width: 40px;
-  height: 40px;
-  display: none;
 }
 
 .articles {

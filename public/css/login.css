@@ -34,14 +34,8 @@ main {
 .theme {
   /* background: lightpink; */
   padding: 0px 10px;
-}
-.theme > img {
-  display: block;
-  width: 50px;
-  height: 50px;
-  margin-left: auto;
-  display: none;
-  /* background: lightsalmon; */
+  display: flex;
+  justify-content: flex-end;
 }
 
 .login {

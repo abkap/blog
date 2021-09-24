@@ -1,7 +1,5 @@
 import { themeOnLoad, adjustTheme } from "/js/functions.js";
 
-// displaying icon
-
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll("img").forEach((img) => {
     console.log("img is : " + img);
@@ -10,10 +8,10 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-const image = document.querySelector("#theme-img");
+const slider = document.querySelector(".slider");
 themeOnLoad();
 
-if (image)
-  image.addEventListener("click", () => {
+if (slider)
+  slider.addEventListener("click", () => {
     adjustTheme();
   });

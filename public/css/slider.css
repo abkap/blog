@@ -1,0 +1,31 @@
+.slider {
+  width: 50px;
+  height: 26px;
+  background: var(--font-color);
+  border-radius: 40px;
+  transition: 0.3s ease;
+}
+
+.slider-round {
+  content: "";
+  display: block;
+  background: var(--container-color);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  /* position: relative; */
+  position: relative;
+  top: 3px;
+  left: 4px;
+  transition: 0.3s ease;
+}
+
+.slider-active {
+  /* background-color: lightgoldenrodyellow; */
+  transition: 0.3s ease;
+}
+
+.slider-round-active {
+  transition: 0.3s ease;
+  left: 27px;
+}
