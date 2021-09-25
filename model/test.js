@@ -1,38 +1,11 @@
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost:27017/blog", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-const db = mongoose.connection;
-db.on("error", (err) => {
-  console.log(err);
-});
+const { Posts } = require("./model.js");
 
-db.on("open", () => {
-  console.log("mongodb connected successfully");
-
-  const PostSchema = new mongoose.Schema({
-    title: String,
-    description: String,
-    content: String,
+async function getDetails() {
+  Posts.find({ id: "hurrray" }, (err, article) => {
+    if (article.length > 0) console.log(article);
   });
+}
 
-  const Posts = mongoose.model("Posts", PostSchema);
-
-  new Posts({
-    title: "hey title",
-    description: "hhey desc",
-    content: "hey content",
-  }).save((err, item) => {
-    if (err) console.log(err);
-  });
-
-  Posts.find((err, item) => {
-    if (err) console.log(err);
-    else console.log(item);
-  });
-
-  //   end
-});
-
+getDetails();
 console.log("server running....");

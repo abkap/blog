@@ -39,17 +39,16 @@ module.exports = {
 
   renderArticlesWithId: (req, res) => {
     try {
-      Posts.find((err, articleList) => {
-        // add error code
-        for (var article of articleList) {
-          if (article.id == req.params.id) {
-            return res.render("thirdperson-read", {
-              title: article.title,
-              contentHtml: article.contentHtml,
-              date: article.date,
-            });
-          }
+      Posts.find({ id: req.params.id }, (err, articleList) => {
+        let article = articleList[0];
+        if (articleList.length > 0) {
+          return res.render("thirdperson-read", {
+            title: article.title,
+            contentHtml: article.contentHtml,
+            date: article.date,
+          });
         }
+
         return res.status(404).render("notfound");
       });
     } catch (err) {
@@ -73,32 +72,31 @@ module.exports = {
   },
   postSuperuser: (req, res) => {
     try {
-      Users.find(async (err, users) => {
+      Users.find({ email: req.body.email }, async (err, users) => {
         // add error code
-        for (user of users) {
-          if (
-            user.email == req.body.email
-            // user.password == req.body.password
-          ) {
-            let hasPermissionToLogin = await checkUserPassword(
-              req.body.password,
-              user.password
-            );
-            console.log(hasPermissionToLogin);
-            if (hasPermissionToLogin) {
-              //   authentication successfull , create  token , cookie and redirect to /superuser/login
-              var user = req.body.email.split("@")[0];
-              var permission = "superuser";
-              token = createJWTToken(user, permission);
+        let user = users[0];
+        if (
+          users.length > 0
+          // found the user with email
+        ) {
+          let hasPermissionToLogin = await checkUserPassword(
+            req.body.password,
+            user.password
+          );
+          // console.log(hasPermissionToLogin);
+          if (hasPermissionToLogin) {
+            //   authentication successfull , create  token , cookie and redirect to /superuser/login
+            let user = req.body.email.split("@")[0];
+            let permission = "superuser";
+            token = createJWTToken(user, permission);
 
-              return res
-                .cookie("token", token, {
-                  httpOnly: true,
-                  // secure: true,
-                  sameSite: true,
-                })
-                .redirect("/superuser/login");
-            }
+            return res
+              .cookie("token", token, {
+                httpOnly: true,
+                // secure: true,
+                sameSite: true,
+              })
+              .redirect("/superuser/login");
           }
         }
 
@@ -150,19 +148,20 @@ module.exports = {
   editArticle: (req, res) => {
     // add error code
     try {
-      Posts.find((err, articleList) => {
-        articleList.forEach((article) => {
-          if (article.id == req.params.id) {
-            // goto create page with pre existing conetnt
-            res.render("create", {
-              id: article.id,
-              title: article.title,
-              description: article.description,
-              contentHtml: article.content,
-              method: "PUT",
-            });
-          }
-        });
+      Posts.find({ id: req.params.id }, (err, articleList) => {
+        if (articleList.length > 0) {
+          // goto create page with pre existing conetnt
+          let article = articleList[0];
+          return res.render("create", {
+            id: article.id,
+            title: article.title,
+            description: article.description,
+            contentHtml: article.content,
+            method: "PUT",
+          });
+        }
+
+        return res.render("notfound");
       });
     } catch (err) {
       console.log(err);
@@ -184,15 +183,14 @@ module.exports = {
       let id = title.replace(/[\!\*\'\(\)\;\:\@\&\=\+\$\#\[\]\,\/\?\%]/g, "~");
       var alredyExists = false;
       id = id.split(" ").join("-");
-      Posts.find(async (err, articleList) => {
-        articleList.forEach((article) => {
-          if (article.id == id) {
-            alredyExists = true;
-            res.send(
-              "<h1>Id (title) alredy exists, please choose another title</h1>"
-            );
-          }
-        });
+      Posts.find({ id: id }, async (err, articleList) => {
+        if (articleList.length > 0) {
+          alredyExists = true;
+          res.send(
+            "<h1>Id (title) alredy exists, please choose another title</h1>"
+          );
+        }
+
         // run existing code below
         if (!alredyExists) {
           // add error code

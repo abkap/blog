@@ -22,9 +22,10 @@ function checkCookie(name) {
 
 function setDarkThemeProperty() {
   // set properties for dark theme
-
-  slider.classList.add("slider-active");
-  sliderRound.classList.add("slider-round-active");
+  if (slider && sliderRound) {
+    slider.classList.add("slider-active");
+    sliderRound.classList.add("slider-round-active");
+  }
 
   root.style.setProperty("--bg-color", "#1e1f33");
   root.style.setProperty("--font-color", "#adafd0");
@@ -45,8 +46,11 @@ function setDarkThemeProperty() {
 }
 
 function setLightThemeProperty() {
-  slider.classList.remove("slider-active");
-  sliderRound.classList.remove("slider-round-active");
+  if (slider && sliderRound) {
+    slider.classList.remove("slider-active");
+    sliderRound.classList.remove("slider-round-active");
+  }
+
   root.style.setProperty("--bg-color", "#EFEFEF");
   root.style.setProperty("--font-color", "#676874");
   root.style.setProperty("--container-color", "#E8E8E8");
