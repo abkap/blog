@@ -9,6 +9,11 @@
     <link rel="stylesheet" href="/css/thirdperson-read.css" />
     <link rel="stylesheet" href="/css/slider.css">
     <script src="/js/client.js" type="module" defer ></script>
+    <!-- prettyprint -->
+    <link rel="stylesheet" href="/css/sunburst.css">
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+
+
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-9P930BJ2XW"></script>
@@ -46,6 +51,13 @@
           <a href="/terms-and-condetions"><p class="condetions">Terms and condetions</p></a> 
         </div>
       </div>
+      <script>
+        let codes = document.querySelectorAll('code')
+        if(codes)~
+        codes.forEach(code => {
+          code.classList.add('prettyprint')
+        })
+      </script>
     </main>
   </body>
 </html>

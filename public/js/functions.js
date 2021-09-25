@@ -43,6 +43,7 @@ function setDarkThemeProperty() {
   //   new
   root.style.setProperty("--placeholder-color", " #9494a0");
   root.style.setProperty("--description-color", "#5c5d80");
+  root.style.setProperty("--code-color", "#d1d2e2");
 }
 
 function setLightThemeProperty() {
@@ -68,6 +69,7 @@ function setLightThemeProperty() {
   //  new
   root.style.setProperty("--placeholder-color", " #9494a0");
   root.style.setProperty("--description-color", "#9494a0");
+  root.style.setProperty("--code-color", "#292960");
 }
 
 // end
